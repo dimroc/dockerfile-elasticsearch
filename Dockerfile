@@ -1,7 +1,5 @@
 FROM elasticsearch:1.5.2
 
-ADD config/elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml
-
 # Mount elasticsearch.yml config
 ADD config/elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml
 
