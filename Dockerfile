@@ -1,9 +1,9 @@
-FROM elasticsearch:1.7.0
+FROM elasticsearch:1.7.2
 
 # Mount elasticsearch.yml config
 ADD config/elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml
 
-RUN /usr/share/elasticsearch/bin/plugin install elasticsearch/elasticsearch-cloud-aws/2.7.0
+RUN /usr/share/elasticsearch/bin/plugin install elasticsearch/elasticsearch-cloud-aws/2.7.1
 RUN /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head
 RUN /usr/share/elasticsearch/bin/plugin install lukas-vlcek/bigdesk
 
