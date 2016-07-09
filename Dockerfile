@@ -1,11 +1,11 @@
-FROM elasticsearch:1.7.2
+FROM elasticsearch:2.3
 
 # Mount elasticsearch.yml config
 ADD config/elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml
 
-RUN /usr/share/elasticsearch/bin/plugin install elasticsearch/elasticsearch-cloud-aws/2.7.1
+RUN /usr/share/elasticsearch/bin/plugin install cloud-aws
 RUN /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head
-RUN /usr/share/elasticsearch/bin/plugin install lukas-vlcek/bigdesk
+#RUN /usr/share/elasticsearch/bin/plugin install lukas-vlcek/bigdesk
 
 RUN apt-get update && \
   apt-get install -y nginx supervisor apache2-utils && \
@@ -22,6 +22,8 @@ ADD run.sh /run.sh
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 ADD nginx_default /etc/nginx/sites-enabled/default
 RUN chmod +x /*.sh
+
+RUN chown -R elasticsearch:elasticsearch /usr/share/elasticsearch
 
 EXPOSE 9200
 CMD ["/run.sh"]
